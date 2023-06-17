@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use node js
-        users: actions/setup-node@v1
+        uses: actions/setup-node@v1
         with:
           node-version: ${{matrix.node-version}}
       - name: npm install and build
@@ -49,7 +49,7 @@ jobs:
             nvm install 14
             npm install -g pm2
             cd ~/var/www/backend/news-category-predictor
-            git pull master
+            git pull origin master
             npm install
             npm install bcryptjs
             pm2 restart backend  
