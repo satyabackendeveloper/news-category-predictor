@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 allowNull: true,
             },
+            url: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
             createdAt: {
                 field: "created_at",
                 type: DataTypes.DATE,

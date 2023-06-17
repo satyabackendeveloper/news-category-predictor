@@ -36,12 +36,12 @@ class ResponseService {
 
     created(req, res, record, message = null) {
         const resConst = constants.RECORD_CREATED;
-        this.send(req, res, HttpStatus.CREATED, true, resConst.CODE, message ?? resConst.MESSAGE, record);
+        this.send(req, res, HttpStatus.CREATED, true, resConst.CODE, message ? resConst.MESSAGE : null, record);
     }
 
     updated(req, res, record, message = null) {
         const resConst = constants.RECORD_UPDATED;
-        this.send(req, res, HttpStatus.OK, true, resConst.CODE, message ?? resConst.MESSAGE, record);
+        this.send(req, res, HttpStatus.OK, true, resConst.CODE, message ? resConst.MESSAGE : null, record);
     }
 
     deleted(req, res) {
@@ -51,7 +51,7 @@ class ResponseService {
 
     success(req, res, data, message = null) {
         const resConst = constants.SUCCESS;
-        this.send(req, res, HttpStatus.OK, true, resConst.CODE, message ?? resConst.MESSAGE, data);
+        this.send(req, res, HttpStatus.OK, true, resConst.CODE, message ? resConst.MESSAGE : null, data);
     }
 
     validation(req, res, err) {
