@@ -46,11 +46,12 @@ jobs:
             touch .env
             echo "${{ secrets.ENV_FILE }}" > .env
             cat .env
-            nvm instal 14
+            nvm install 14
             npm install -g pm2
             cd ~/var/www/backend/news-category-predictor
-            git pull origin main
+            git pull master
             npm install
+            npm install bcryptjs
             pm2 restart backend  
 
     
