@@ -40,14 +40,14 @@ class NewsCategoryRepository {
   }
 
   async predictNewsCategory(scrapeDto) {
-      // Store news category data
-      await this.storeNewsCategory({
-        heading: scrapeDto.heading,
-        category: 'Test',
-        content: null,
-        url: scrapeDto.url
-      })
-    
+    // Store news category data
+    await this.storeNewsCategory({
+      heading: scrapeDto.heading,
+      category: 'Test',
+      content: null,
+      url: scrapeDto.url
+    })
+
     // const predictNewsCategory = spawn('python3', ['app/newscategorypredictor.py', JSON.parse({
     //   heading: scrapeDto.heading
     // })]);
@@ -92,18 +92,11 @@ class NewsCategoryRepository {
   }
 
   async getNewsCategories() {
-    try {
-      return await this.model.findAndCountAll({
-        order: [
-          ['created_at', 'DESC']
-        ]
-      });
-    } catch (e) {
-      throw ono({
-        status: 500,
-        message: 'Failed to create category data'
-      })
-    }
+    return await this.model.findAndCountAll({
+      order: [
+        ['created_at', 'DESC']
+      ]
+    });
   }
 }
 
