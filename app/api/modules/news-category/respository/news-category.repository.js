@@ -29,43 +29,42 @@ class NewsCategoryRepository {
 
     const $ = cheerio.load(axiosResponse.data)
     const heading = $('h1').first().text();
-    const category = $('a').first().text();
-    return {
+
+    await this.predictNewsCategory({
       heading,
-    }
-    // this.predictNewsCategory({
-    //   heading,
-    //   url: scrapeDto.link
-    // });
+      url: scrapeDto.link
+    });
 
     // const newsCategoryList = await this.getNewsCategories();
     return newsCategoryList;
   }
 
-  predictNewsCategory(scrapeDto) {
-    const predictNewsCategory = spawn('python3', ['app/newscategorypredictor.py', JSON.parse({
-      heading: scrapeDto.heading
-    })]);
-    let result;
-    predictNewsCategory.stdout.on('data', (data) => {
-      result += data.toString();
-    });
-
-    predictNewsCategory.stderr.on('data', (data) => {
-      result += data.toString();
-    });
-
-    predictNewsCategory.on('close', async (code) => {
-      console.log(result)
+  async predictNewsCategory(scrapeDto) {
       // Store news category data
-      // await this.storeNewsCategory({
-      //   heading: scrapeDto.heading,
-      //   category: 'Hello',
-      //   content: result,
-      //   url: scrapeDto.url
-      // })
+      await this.storeNewsCategory({
+        heading: scrapeDto.heading,
+        category: 'Test',
+        content: result,
+        url: scrapeDto.url
+      })
+    
+    // const predictNewsCategory = spawn('python3', ['app/newscategorypredictor.py', JSON.parse({
+    //   heading: scrapeDto.heading
+    // })]);
+    // let result;
+    // predictNewsCategory.stdout.on('data', (data) => {
+    //   result += data.toString();
+    // });
 
-    });
+    // predictNewsCategory.stderr.on('data', (data) => {
+    //   result += data.toString();
+    // });
+
+    // predictNewsCategory.on('close', async (code) => {
+    //   console.log(result)
+
+
+    // });
   }
 
   async storeNewsCategory(categoryData) {
