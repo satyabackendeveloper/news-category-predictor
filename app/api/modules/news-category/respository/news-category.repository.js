@@ -36,7 +36,7 @@ class NewsCategoryRepository {
     });
 
     // const newsCategoryList = await this.getNewsCategories();
-    return newsCategoryList;
+    // return newsCategoryList;
   }
 
   async predictNewsCategory(scrapeDto) {
