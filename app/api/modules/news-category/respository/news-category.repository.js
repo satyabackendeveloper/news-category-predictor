@@ -44,7 +44,7 @@ class NewsCategoryRepository {
       await this.storeNewsCategory({
         heading: scrapeDto.heading,
         category: 'Test',
-        content: result,
+        content: null,
         url: scrapeDto.url
       })
     
