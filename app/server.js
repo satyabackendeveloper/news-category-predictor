@@ -20,7 +20,7 @@ app.use(express.json());
 // sanitize request data
 app.use(xss());
 app.get("/", (req, res) => {
-    res.send("Server Running Successfully");
+    res.send("Server Running");
 });
 app.use("/api", v1Routes);
 // send back a 404 error for any unknown api request
